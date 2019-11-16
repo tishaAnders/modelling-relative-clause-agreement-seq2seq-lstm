@@ -3,6 +3,7 @@
 ## Update info
 
 :triangular_flag_on_post: **16-11-19** Added Readme & possible set of LSTM generations
+
 :triangular_flag_on_post: **15-11-19** Uploaded software & possible training dataset for LSTM
 
 # Introduction
