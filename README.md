@@ -30,7 +30,7 @@ Below you can find the language used to model sentences with embedded relative c
 ```
 <s> ::= <u><x><y>
 <u> ::= <d><p><n> | <d><n> | <p><n> | <n>
-<x> ::= <q><qq><qqq><q>
+<x> ::= <q><qq><qqq><qqqq>
 <q> ::= <c><r><v><p><n><p> | <c><r><v><p><n> | <c><r><v><n> |
 <c><r><v><n>
 <y> ::= <z><v><d><p><n> | <z><v><d><n> | <z><v><p><n> | <z><v><n> |
