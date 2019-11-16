@@ -1,6 +1,6 @@
 # Modelling Agreement in English Relative Clauses with an LSTM
 
-To demonstrate the efficacy of LSTMs in learning long-term dependencies which confuse even humans, I designed a toy language to model relative clause constructions in English. Sentences with multiple, nested, relative clauses require the reader to keep track of grammatical attributes of the subject of the sentence until the end of the sentence is reached, where the sentence is artificially prolonged by insertion of relative clauses in the middle. 
+To demonstrate the efficacy of LSTMs in learning long-term dependencies which confuse even humans, I designed a toy language to model relative clause constructions in English. Sentences with multiple, nested, relative clauses require the reader to keep track of the sentence subject's grammatical attributes until the end of the sentence is reached, where the sentence is artificially prolonged by insertion of relative clauses in the middle. 
 
 
 ## How agreement works in English relative clause constructions 
@@ -102,7 +102,7 @@ This result, together with some of my analyses of bad generations, indicates tha
 ## Final note
 Technical details beyond this short exposé can be found in my Bachelor's thesis, e.g.
 * how an LSTM learns
-* the architecture of an encoder-decoder LSTM
+* the architecture of an Encoder-Decoder LSTM
 * the Backus-Naur Form
-* Context-free Grammars
-* Agreement in relative clauses
+* Context-Free Grammars
+* Agreement in Relative Clauses
