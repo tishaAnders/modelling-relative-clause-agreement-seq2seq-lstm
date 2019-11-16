@@ -4,7 +4,7 @@
 
 :triangular_flag_on_post: **16-11-19** Added Readme & possible set of LSTM generations
 
-:triangular_flag_on_post: **15-11-19** Uploaded software & possible training dataset for LSTM
+:triangular_flag_on_post: **15-11-19** Uploaded *ExampleBuilder.java*, *string_generator_gpu.py* (LSTM), 2 parsers to check the LSTM's accuracy, possible training dataset for LSTM
 
 # Introduction
 To demonstrate the efficacy of LSTMs in learning long-term dependencies which confuse even humans, I designed a toy language to model relative clause constructions in English. Sentences with multiple, nested, relative clauses require the reader to keep track of the sentence subject's grammatical attributes until the end of the sentence is reached, where the sentence is artificially prolonged by insertion of relative clauses in the middle. 
