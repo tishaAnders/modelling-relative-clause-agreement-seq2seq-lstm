@@ -55,7 +55,7 @@ Some context meaning is assigned to the tokens in the following:
 |`<q>`|one relative clause (e.g. *who likes spaghetti*)|
 |`<y>`|outro (e.g. *, wears a red jacket*)|
 |`<c>`|comma (every relative clause has a comma to its left and right)|
-|`<d>`|determiner (e.g. *the or three out of two*)|
+|`<d>`|determiner (e.g. *the* or *three out of two*)|
 |`<p>`|adjective / other noise|
 |`<e>`|the empty string|
 |`<n>`|noun (e.g. *men*)|
