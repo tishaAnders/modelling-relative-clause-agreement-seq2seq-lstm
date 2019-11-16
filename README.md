@@ -100,4 +100,9 @@ Training the LSTM on 1800 epochs will lower the validation accuracy slightly, wh
 This result, together with some of my analyses of bad generations, indicates that agreement (i.e. long-term dependencies) is not a problem at all for the LSTM. However, for instance, it struggles with constraining itself to the correct number of `V`s allowed in a verb, though only on a very minor basis. 
 
 ## Final note
-Explanations of how exactly the encoder-decoder LSTM learns the language are not provided here, since this is only a short exposé of my Bachelor's thesis. 
+Technical details beyond this short exposé can be found in my Bachelor's thesis, e.g.
+* how an LSTM learns
+* the architecture of an encoder-decoder LSTM
+* the Backus-Naur Form
+* Context-free Grammars
+* Agreement in relative clauses
