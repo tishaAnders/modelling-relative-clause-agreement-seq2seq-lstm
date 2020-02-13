@@ -67,7 +67,6 @@ public class AgreementandBNFParser
         Boolean xyxy = true;
         Boolean long_dist_NV = false;
 
-
         for (int i = 0; i < no_of_xyxy; i++)
         {
             xyxy_array[i] = false;
@@ -99,6 +98,7 @@ public class AgreementandBNFParser
         }
 
     }
+
     /**
      * This function takes in a file and tests whether the order of tokens is possible, using the above created BNF parser
      * @param filename The file to be examined
@@ -114,13 +114,13 @@ public class AgreementandBNFParser
         int line_no = 0;
         while (scanner.hasNextLine())
         {
-            line_no++;
-            no_of_tested_gens++;
             String line = scanner.nextLine();
             line = line.substring(0, line.length()-1);
             int judgement = BNFParser.BNFparse(line);
             results[line_no] = judgement;
             no_of_good_gens = no_of_good_gens + judgement; 
+            line_no++;
+            no_of_tested_gens++;
         }
         double percentage = no_of_good_gens * Math.pow(no_of_tested_gens, -1);
         return percentage*100;
@@ -141,19 +141,88 @@ public class AgreementandBNFParser
         int line_no = 0;
         while (scanner.hasNextLine())
         {
-            line_no++;
-            no_of_tested_gens++;
             String line = scanner.nextLine();
             line = line.substring(0, line.length()-1);
             int bnf_judgement = BNFParser.BNFparse(line);
             int agr_judgement = checkAgreement(line);
             results[line_no] = (bnf_judgement + agr_judgement)/2;
-            if (bnf_judgement + agr_judgement ==2)
+            if (bnf_judgement + agr_judgement == 2)
             {
                 no_of_good_gens++;
             }
+            line_no++;
+            no_of_tested_gens++;
         }
+
         double percentage = no_of_good_gens * Math.pow(no_of_tested_gens, -1);
         return percentage*100;
+    } 
+
+    /**
+     * This method lists all generated sentences from a file together with their judgement (word-order & agreement).
+     * judgementArray might be useful in analysing what the LSTM struggles with in particular.
+     * @param filename The file to be examined
+     * @return judgement array (sentence in first column, judgement in second column)
+     * 
+     */ 
+    public static String[][] judgementArray(String filename) throws java.io.FileNotFoundException
+    {
+        Scanner scanner_count = new Scanner(new File(filename + ".txt"));
+        int no_of_good_gens = 0;
+        int no_of_tested_gens = 0;
+        int line_cnt = 0;
+        while (scanner_count.hasNextLine())
+        {
+            line_cnt++;
+            scanner_count.nextLine();
+        }
+        scanner_count.close();
+        Scanner scanner = new Scanner(new File(filename + ".txt"));
+        String[][] judgements = new String[2][line_cnt];
+        int line_no = 0;
+        while (scanner.hasNextLine())
+        {
+            String line = scanner.nextLine();
+            judgements[0][line_no] = line;
+            line = line.substring(0, line.length()-1);
+            int bnf_judgement = BNFParser.BNFparse(line);
+            int agr_judgement = checkAgreement(line);
+            if (bnf_judgement + agr_judgement ==2)
+            {
+                judgements[1][line_no] = "Good";
+            }
+            else
+            {
+                judgements[1][line_no] = "Bad";
+            }
+            line_no++;
+            no_of_tested_gens++;
+        }
+        scanner.close();
+        return judgements;
     }
+
+    /**
+     * This method lists all bad sentences from a file.
+     * badGenerations might be useful in analysing what the LSTM struggles with in particular.
+     * @param filename The file to be examined
+     * @return judgement array (sentence in first column, judgement in second column)
+     * 
+     */ 
+    public static String[] badSentences(String filename) throws java.io.FileNotFoundException
+    {
+        String[][] all_judgements = judgementArray(filename);
+        String[] bad_sentences = new String[500];
+        int bad_count = 0;
+        for (int i = 0; i < all_judgements.length; i++)
+        {
+            String current_sentence = all_judgements[1][i];
+            if (current_sentence.equals("Bad"))
+            {
+                bad_sentences[bad_count] = all_judgements[0][i];
+                bad_count++;
+            }
+        }
+        return bad_sentences;
     }
+}
