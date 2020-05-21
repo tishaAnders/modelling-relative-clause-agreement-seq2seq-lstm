@@ -11,7 +11,7 @@ import os
 
 
 batch_size = 512  # No. of training examples per batch
-epochs = 1500  # Number of epochs to train for
+epochs = 1900  # Number of epochs to train for
 latent_dim = 256  # Latent dimensionality of the encoding space # default value
 num_samples = 10000  # Number of samples to train on
 
