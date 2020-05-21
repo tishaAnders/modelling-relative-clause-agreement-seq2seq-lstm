@@ -3,8 +3,17 @@ import java.util.*;
 import java.io.File;
 import java.lang.Math;
 import java.lang.Character;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.Random;
+import java.io.PrintStream;
+import java.io.FileNotFoundException;
 /**
- * // Check rules again
  * A class that tests word-order (using the BNFParser class) and Agreement, so that it tests the overall grammaticality of the sentences in a file.  
  *s -> u x y 
  *u -> d p n | d n | p n | n
@@ -19,11 +28,6 @@ import java.lang.Character;
  *v -> V S | V V S | V V V S | V V V V S | V V V V V S | V T | V V T | V V V T | V V V V T | V V V V V T
  *z -> Z
  *r -> R A | R B 
- *
- *
- *
- *
- *
  *
  *
  * @author Tisha Anders
@@ -209,6 +213,27 @@ public class AgreementandBNFParser
      * @return judgement array (sentence in first column, judgement in second column)
      * 
      */ 
+
+    public static int badSentencesToFile(String source_file, String goal_file) throws java.io.FileNotFoundException
+    {
+        String[][] all_judgements = judgementArray(source_file);
+        int bad_count = 0;
+        File myFile = new File("BAD" + goal_file + ".txt");
+        PrintStream p = new PrintStream(myFile);
+        for (int i = 0; i < all_judgements[1].length; i++)
+        {
+            String current_sentence = all_judgements[1][i];
+            if (current_sentence.equals("Bad"))
+            {
+                p.println(all_judgements[0][i]);
+                bad_count++;
+            }
+        }
+
+        p.close();
+        return bad_count;
+    }
+
     public static String[] badSentences(String filename) throws java.io.FileNotFoundException
     {
         String[][] all_judgements = judgementArray(filename);
@@ -225,4 +250,5 @@ public class AgreementandBNFParser
         }
         return bad_sentences;
     }
+
 }
