@@ -1,7 +1,7 @@
 # Modelling Agreement in English Relative Clauses with an LSTM
 
 ## Update info
-:triangular_flag_on_post: **12-02-20** Changed Optimizer to 'Adam' (faster), updated .txt file with 500 example generations, added *judgementArray* & *badSentences* testing methods in *AgreementandBNFParser.java*
+:triangular_flag_on_post: **12-02-20** Changed Optimizer to 'Adam' (faster), updated .txt file with 1000 example generations, added *judgementArray* & *badSentences* testing methods in *AgreementandBNFParser.java*
 
 :triangular_flag_on_post: **16-11-19** Added Readme & possible set of LSTM generations
 
@@ -84,7 +84,7 @@ The encoder LSTM takes in the "intro" to the sentence (e.g. *The old book*) and 
 Notice that the decoder LSTM has to deal with a long long-term dependency in the subject-verb agreement between intro and outro, but also minor long-term dependencies to ensure agreement within the relative clauses and maintain the basic word-order.
 
 It returns a .txt file that contains (hopefully) valid strings in the toy language. 
-You can try run your own LSTM, or use the generations provided in this repository (*2020-02-12-14-58-07_gen.txt*).
+You can try run your own LSTM, or use the generations provided in this repository (*2020-04-11-21-24-40_gen.txt*).
 Unfortunately, the *.py* file only allows GPU computation, since this is much faster. A CPU version may be provided at some point. 
 
 ## Testing the accuracy of the LSTM (Performance Analysis)
@@ -108,10 +108,10 @@ Percentage of strings with correct word order & agreement (from file) can be com
 ## A few notes on training
 ### Epochs
 The LSTM will generate correct examples with less than 200 epochs, but they will be very lengthy and not differ much from each other. 
-Training the LSTM on 1800 epochs will lower the validation accuracy slightly. However, this mild overfitting makes the sentences a bit more varied, which seems more natural. 
+Training the LSTM on 1900 epochs will lower the validation accuracy slightly. However, this mild overfitting makes the sentences a bit more varied, which seems more natural. 
 ### Accuracy
-*2020-02-12-14-58-07_gen.txt* provides an example of what *string_generator_gpu_.py* could have created. It returns 96.8% accuracy when testing word order and agreement combined. 
-This result, together with some observations of bad generations, indicates that agreement (i.e. long-term dependencies) is not a problem at all for the LSTM. However, for instance, it struggles with constraining itself to the correct number of `V`s/`N`s allowed in a verb, or forgets to attach an ending to e.g. the verb, though only on a very minor basis. 
+*2020-04-11-21-24-40_gen.txt* provides an example of what *string_generator_gpu.py* could have created. It returns 99.5% accuracy when testing word order and agreement combined. 
+This result, together with some observations of bad generations, indicates that agreement (i.e. long-term dependencies) is not a problem for the LSTM. However, for instance, it struggles with constraining itself to the correct number of `V`s/`N`s allowed in a verb, or forgets to attach an ending to e.g. the verb, though only on a very minor basis. For error analysis, the invalid strings in *2020-04-11-21-24-40_gen.txt* have been listed in *BAD2020-04-11-21-24-40_gen.txt* by the `badSentences(String filename)` method.
 
 ## Final note
 Technical details beyond this short exposé can be found in my Bachelor's thesis, e.g.
