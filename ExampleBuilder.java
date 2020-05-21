@@ -12,12 +12,13 @@ import java.io.FileNotFoundException;
  * In this class, a given number of training examples in my language are written to a .txt file. Use toFile(String file_name, int m) for this.  
  *
  * @author Tisha Anders
- * @version 1
  */
 public class ExampleBuilder
 {
+    // Build methods to pick word-specific length
+    // n_x is the number of Xs contained in the word class X  
     /**
-     * This method generates an n_n randomly, between 1 and 9
+     * This method generates an n_n (number of Ns in noun) randomly, between 1 and 9
      *
      * @return int n_n
      */
@@ -28,7 +29,7 @@ public class ExampleBuilder
     }
 
     /**
-     * This method generates an n_v randomly, between 1 and 5
+     * This method generates an n_v randomly (number of Vs in verb), between 1 and 5
      *
      * @return int n_v
      */
@@ -60,6 +61,7 @@ public class ExampleBuilder
         return rand.nextInt(3);
     }
 
+    // Build methods that assemble words
     /**
      * This method generates a String of n_d Ds, i.e. a determiner.
      *
@@ -126,7 +128,7 @@ public class ExampleBuilder
     }
 
     /**
-     * This method generates a String of n_p Ps, i.e. an adjective/preposition/etc.
+     * This method generates a String of n_p Ps, i.e. an adjective, preposition, etc.
      *
      * @return String the string of Ps, i.e. the adjective or another filler
      */
@@ -219,7 +221,8 @@ public class ExampleBuilder
         String intro = determiner() + adjective() + noun();
         return intro;
     }
-
+    
+    // Build parts of sentences
     /**
      * This method generates the relative clauses part for the sentence, agreeing with what has been generated as a subject, e.g. "The blue hat, which Jacob said, who is ill".
      *
@@ -231,7 +234,7 @@ public class ExampleBuilder
         Boolean last_noun_animate;
         Boolean last_noun_s;
         Random rand5 = new Random();
-        int n_rel_clauses = rand5.nextInt(4); // between 1 and 4 relative clauses in 1 sentence, because of the for-loop below
+        int n_rel_clauses = rand5.nextInt(4); // between 1 and 4 relative clauses in 1 sentence, because of 0<=i<=3 in the for-loop below
         for (int i = 0; i <= n_rel_clauses; i++)
         {
             int lastN = sentence_so_far.lastIndexOf("N");
@@ -251,13 +254,13 @@ public class ExampleBuilder
             {
                 last_noun_s = false;
             }
-            //sentence_so_far = sentence_so_far + rel_pro(last_noun_animate) + verb(last_noun_s) + adjective() + noun() + adjective(); //the last adj might be left out
 
             sentence_so_far = sentence_so_far + comma() + rel_pro(last_noun_animate) + verb(last_noun_s) + adjective() + noun() + adjective();
         }
         return sentence_so_far;
     }
-
+    
+    // build an entire sentence
     /**
      * This method puts together a sentence in my mickey-mouse language, using the above methods.
      *
@@ -289,6 +292,7 @@ public class ExampleBuilder
         return sentence_so_far;
     }
 
+    // Append training sentences to file
     /**
      * This method appends generated sentences to a .txt file.
      * @param file_name the file we want to write to, excluding .txt
