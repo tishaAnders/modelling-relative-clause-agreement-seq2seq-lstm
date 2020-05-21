@@ -21,13 +21,8 @@ import java.lang.Math;
  *
  *Agreement has to be checked separately.
  *
- *
- *
- *
- *
- *
  * @author Tisha Anders
- * @version 1
+
  */
 public class BNFParser
 {
@@ -84,10 +79,10 @@ public class BNFParser
                 //replace in the following cases:
                 // substring occurs in string, 
                 // if we are about to replace the intro, the string we are replacing must be located before the relative clauses
-                if (starting_pos != -1) //&& (r != 1 ||(r == 1 && starting_pos < first_rc_pos))) // if we replace intro with u, there are patterns in the rest of the string that might look the same as the intro. Therefore only replace strings before the first relative clause q.
+                if (starting_pos != -1) 
                 {
                     s = s.replaceAll(current_term_str, current_syn_unit);
-                } //else s = s
+                } 
             }
             sc.close();
         }
@@ -116,7 +111,7 @@ public class BNFParser
         {
             no_of_tested_gens++;
             String line = scanner.nextLine();
-            line = line.substring(0, line.length()-1); //crop out space
+            line = line.substring(0, line.length()-1); //crop out the space symbol
             int judgement = BNFparse(line);
             no_of_good_gens = no_of_good_gens + judgement; 
             
@@ -124,4 +119,5 @@ public class BNFParser
         double percentage = no_of_good_gens * Math.pow(no_of_tested_gens, -1);
         return percentage*100;
     }
+    
 }
