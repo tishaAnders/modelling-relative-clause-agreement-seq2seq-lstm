@@ -31,7 +31,6 @@ import java.io.FileNotFoundException;
  *
  *
  * @author Tisha Anders
- * @version 1
  */
 public class AgreementandBNFParser
 {
