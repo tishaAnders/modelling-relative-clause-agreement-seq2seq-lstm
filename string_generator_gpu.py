@@ -1,5 +1,5 @@
 ### This code was originally taken from https://keras.io/examples/lstm_seq2seq/
-### Has been annotated & modified from input file and write to output file
+### Has been annotated & modified to read from input file and write to output file
 
 from __future__ import print_function
 import tensorflow
