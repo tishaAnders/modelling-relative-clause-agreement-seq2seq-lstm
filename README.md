@@ -79,7 +79,7 @@ You can generate your own examples with the Java file or just use the examples p
 ## Generating strings with LSTM
 
 The LSTM architecture is described in detail in [Sequence to Sequence Learning with Neural Networks (Sutskever et al.)](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf).
-To make the LSTM generate strings in the toy language, based on examples from a file, run *string_generator_gpu.py* to train your encoder-decoder LSTM. Change the datapath (in line 16) of *string_generator_gpu.py* to your dataset generated with *ExampleBuilder.java*. If you leave the datapath unchanged, the LSTM will be trained on the default dataset provided in this repository (*dataset.txt*).
+To make the LSTM generate strings in the toy language, based on examples from a file, run *string_generator_gpu.py* to train your encoder-decoder LSTM. Change the datapath (line 19) of *string_generator_gpu.py* to your dataset generated with *ExampleBuilder.java*. If you leave the datapath unchanged, the LSTM will be trained on the default dataset provided in this repository (*dataset.txt*).
 The encoder LSTM takes in the "intro" to the sentence (e.g. *The old book*) and stores a numerical summary of important features in the last hidden state *v*. The decoder LSTM learns how to sample the rest of the sentence, given *v* as input.
 Notice that the decoder LSTM has to deal with a long long-term dependency in the subject-verb agreement between intro and outro, but also minor long-term dependencies to ensure agreement within the relative clauses and maintain the basic word-order.
 
